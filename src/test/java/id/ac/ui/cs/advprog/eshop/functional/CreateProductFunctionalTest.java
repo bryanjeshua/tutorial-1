@@ -19,13 +19,11 @@ class CreateProductFunctionalTest {
 
     @Test
     void initialProductListPage_isCorrect (ChromeDriver driver) {
-        // Exercise
         driver.get(baseUrl + "list");
         String windowTitle = driver.findElement(By.tagName("h2")).getText();
         String tbodyContent = driver.findElement(By.tagName("tbody")).getText();
 
-        // Verify
-        assertEquals("Product' List", windowTitle);
+        assertEquals("Product List", windowTitle);
         assertEquals("",tbodyContent);
     }
 
@@ -43,10 +41,10 @@ class CreateProductFunctionalTest {
     void cancelCreateProduct(ChromeDriver driver) {
         driver.get(baseUrl + "list");
         driver.findElement(By.linkText("Create Product")).click();
-        driver.findElement(By.name("productName")).sendKeys("Air Murni Alam");
+        driver.findElement(By.name("productName")).sendKeys("Air Murni Sungai");
         driver.findElement(By.name("productQuantity")).sendKeys("17");
         driver.get(baseUrl + "list");
         String tbodyContent = driver.findElement(By.tagName("tbody")).getText();
-        assertNotEquals("Air Murni Alam",tbodyContent);
+        assertNotEquals("Air Murni Sungai",tbodyContent);
     }
 }
