@@ -19,7 +19,10 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService service;
-
+    @GetMapping("/")
+    public String welcomePage() {
+        return "welcome";
+    }
     @GetMapping("/create")
     public String createProductPage(Model model) {
         Product product = new Product();
