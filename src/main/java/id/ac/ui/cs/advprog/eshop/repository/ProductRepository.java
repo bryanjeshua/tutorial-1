@@ -24,4 +24,22 @@ public class ProductRepository {
         return productData.removeIf(product -> product.getProductId().equals(productId));
     }
 
+    public Product findById(String productId) {
+        for (Product product : productData) {
+            if (product.getProductId().equals(productId)) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public Product update(Product product) {
+        int index = productData.indexOf(product);
+        if (index != -1) {
+            productData.set(index, product);
+            return product;
+        }
+        return null;
+    }
+
 }
