@@ -108,4 +108,8 @@ class ProductRepositoryTest {
     void testEditAndNotFound() {
 
     }
+    @Test
+    void testEditAndFound() {
+
+    }
 }
