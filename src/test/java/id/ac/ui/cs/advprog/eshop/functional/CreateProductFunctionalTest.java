@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @SpringBootTest
 @ExtendWith(SeleniumJupiter.class)
 class CreateProductFunctionalTest {
-
     private final String baseUrl = "http://localhost:8080/product/";
 
     @Test
