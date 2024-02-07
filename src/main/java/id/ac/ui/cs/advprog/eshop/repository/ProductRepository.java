@@ -16,7 +16,7 @@ public class ProductRepository {
         if(product.getProductId() == null) {
             product.setProductId(uniqueID);
         }
-        productData.add(product); // Assuming productData is a collection where you store your products
+        productData.add(product);
         return product;
     }
     public Iterator<Product> findAll() {
