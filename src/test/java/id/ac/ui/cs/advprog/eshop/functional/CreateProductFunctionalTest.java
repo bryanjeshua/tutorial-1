@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @SpringBootTest
 @ExtendWith(SeleniumJupiter.class)
 class CreateProductFunctionalTest {
-    private final String baseUrl = "http://localhost:8080/product/";
+    private final String baseUrl = "http://localhost:8080/";
 
     @Test
     void initialProductListPage_isCorrect (ChromeDriver driver) {

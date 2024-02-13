@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
-@RequestMapping("/product")
+@RequestMapping("")
 public class ProductController {
     @Autowired
     private ProductService service;
@@ -27,7 +27,7 @@ public class ProductController {
     public String createProductPage(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "createProduct";
+        return "CreateProduct";
     }
 
     @PostMapping("/create")
@@ -40,25 +40,25 @@ public class ProductController {
     public String productListPage(Model model) {
         List<Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
-        return "productList";
+        return "ProductList";
     }
 
     @GetMapping("/delete/{productId}")
     public String deleteProduct(@PathVariable String productId) {
         service.delete(productId);
-        return "redirect:/product/list";
+        return "redirect:/list";
     }
     @GetMapping("/edit/{productId}")
     public String showEditProductPage(@PathVariable String productId, Model model) {
         Product product = service.findById(productId);
         model.addAttribute("product", product);
-        return "editProduct";
+        return "EditProduct";
     }
 
     @PostMapping("/update")
     public String updateProduct(@ModelAttribute Product product) {
         service.update(product);
-        return "redirect:/product/list";
+        return "redirect:/list";
     }
 
 }

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SeleniumJupiter.class)
 class HomePageFunctionalTest {
 
-    private final String baseUrl = "http://localhost:8080/product/";
+    private final String baseUrl = "http://localhost:8080/";
 
     @Test
     void pageTitle_isCorrect (ChromeDriver driver) {
