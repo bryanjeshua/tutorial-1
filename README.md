@@ -1,6 +1,6 @@
 # Tutorial-1 Advance Programming
 Name : Bryan Jeshua Mario Timung \
-NPM : 2206027021 \
+NPM : 2206027021 
 
 ## First Week
 ### First reflection
@@ -16,6 +16,7 @@ Regarding the case study, instead of creating two different classes, I believe w
 
 ## Second Week
 1. There are several code quality issues that I fixed during exercise such as
-   - Lorem ipsum dolor sit amet. To fix this, I ...
-   - Lorame ipsum
-2. In my opinion, yes my code currently following the principles of CI/CD.
+   - I remove public modifier of create and findAll in ProductService interface. It is a default that for every interface, the method by default is public. 
+   - I enforce policy of braces in several conditionals in Product class
+
+2. In my opinion, yes, my code currently follows the principles of CI/CD. I can see Continuous Integration in action through the process of integrating code from several branches, as if created by multiple programmers. After that, the machine automatically reviews some parts to ensure the program follows standards and conventions, ensuring it is safe and runs smoothly. This is executed through workflow settings. The Continuous Deployment aspect can be seen in the deployment process after the CI phase is completed. The entire software release process is automated, enabling the team to work faster.
