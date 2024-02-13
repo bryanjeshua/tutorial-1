@@ -64,7 +64,7 @@ tasks.withType<Test>().configureEach{
 
 tasks.test {
     filter{
-        excludeTestsMatching("*FunctionalTestMatching")
+        excludeTestsMatching("*FunctionalTest")
     }
     finalizedBy(tasks.jacocoTestReport)
 }
