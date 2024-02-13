@@ -23,6 +23,16 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testCreateAndFindById() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        Product productFound = productRepository.findById("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        assertEquals(productFound.getProductId(), product.getProductId());
+    }
+    @Test
     void testCreateAndFind() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
