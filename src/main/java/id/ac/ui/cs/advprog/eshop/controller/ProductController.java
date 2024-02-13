@@ -21,7 +21,7 @@ public class ProductController {
     private ProductService service;
     @GetMapping("/")
     public String welcomePage() {
-        return "welcome";
+        return "Welcome";
     }
     @GetMapping("/create")
     public String createProductPage(Model model) {
