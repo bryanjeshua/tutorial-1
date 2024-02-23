@@ -14,9 +14,9 @@ public class CarRepository {
     private List<Car> carData = new ArrayList<>();
 
     public Car create(Car car) {
-        if (car.getCarId() == null) {
+        if (car.getProductId() == null) {
             UUID uuid = UUID.randomUUID();
-            car.setCarId(uuid.toString());
+            car.setProductId(uuid.toString());
         }
         carData.add(car);
         return car;
@@ -28,7 +28,7 @@ public class CarRepository {
 
     public Car findById(String id) {
         for (Car car : carData) {
-            if (car.getCarId().equals(id)) {
+            if (car.getProductId().equals(id)) {
                 return car;
             }
         }
@@ -38,11 +38,11 @@ public class CarRepository {
     public Car update(String id, Car updatedCar) {
         for (int i = 0; i < carData.size(); i++) {
             Car car = carData.get(i);
-            if (car.getCarId().equals(id)) {
+            if (car.getProductId().equals(id)) {
                 // Update the existing car with the new information
-                car.setCarName(updatedCar.getCarName());
+                car.setProductName(updatedCar.getProductName());
                 car.setCarColor(updatedCar.getCarColor());
-                car.setCarQuantity(updatedCar.getCarQuantity());
+                car.setProductQuantity(updatedCar.getProductQuantity());
                 return car;
             }
         }
@@ -50,6 +50,6 @@ public class CarRepository {
     }
 
     public void delete(String id) {
-        carData.removeIf(car -> car.getCarId().equals(id));
+        carData.removeIf(car -> car.getProductId().equals(id));
     }
 }
