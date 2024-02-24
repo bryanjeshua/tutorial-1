@@ -35,41 +35,41 @@ Regarding the case study, instead of creating two different classes, I believe w
 
 ## Third Week
 > 1. Explain what principles you apply to your project!
-- Single Responsibility Principle
-This principle emphasize the importance of a module only being responsible to only one actor.
--- I create a HomeController class file that is only responsible for controlling the home page. 
--- I divide ProductController and CarController into two different class files.
+- Single Responsibility Principle <br>
+This principle emphasize the importance of a module only being responsible to only one actor. <br>
+-- I create a HomeController class file that is only responsible for controlling the home page. <br>
+-- I divide ProductController and CarController into two different class files.<br>
 
-- Open Closed Principle
+- Open Closed Principle <br>
 The principle emphasizes the openness of entities to extension but their closeness to modification. Seeing many similarities between the Product and Car models, I make Car a child of Product. Car has a unique attribute for color.
 
-- Liskov Substitution Principle
+- Liskov Substitution Principle <br>
 In the project, we can observe that the ProductServiceImpl, as a child, is also a ProductService. It implements all the methods defined in ProductService.
 
-- Interface Segregation Principle
+- Interface Segregation Principle <br>
 Building upon the provided templates, the interfaces are already segregated into CarService and ProductService. Therefore, I only need to implement them in the controller file.
 
-- Depedency Inversion Principle
+- Depedency Inversion Principle <br>
 Following this principle, which prefers using abstraction, I use interfaces instead of concrete implementations for CarService and ProductService in the controller.
 
 > 2. Explain the advantages of applying SOLID principles to your project with examples.
-- Increase modularity
+- Increase modularity <br>
 SOLID principles break down the program into simpler and more manageable parts, like Lego bricks. I can change a part or function without significantly affecting other parts, thus avoiding disruption to the entire program. Additionally, I can reuse created parts to build other components. For example, creating Car models that extend Product allows Car to inherit all Product attributes.
 
-- Improve readability
+- Improve readability <br>
 By dividing the program into simpler and more manageable components, each function or class becomes smaller and more straightforward. Understanding a function or class becomes faster as they are divided by functionality. For instance, knowing that the HomeController file is only responsible for navigating the Home page.
 
-- Make testing easier
+- Make testing easier <br>
 With SOLID principles, testing becomes easier because each function only performs one task. Identifying mistakes and fixing them becomes simpler since the code is modular, requiring changes to only small parts. For example, if I make a mistake in finding car by Id, I only have to focus on fixing the findById in CarService and CarServiceImpl, not on the other part
 
 > 3. Explain the disadvantages of not applying SOLID principles to your project with examples.
-- Complicate testing
+- Complicate testing <br>
 Without applying SOLID principles, classes and functions tend to handle multiple tasks, making testing challenging. For instance, having a single repository class for two different models complicates managing instances and debugging errors related to specific model instances.
 
-- Reduce readability
+- Reduce readability <br>
 Failure to apply SOLID principles results in code that is harder to read. For instance, incorporating all controllers into a single class file makes the file lengthy, making it difficult to navigate or modify paths if necessary.
 
-- Reduce reusability
+- Reduce reusability <br>
 Neglecting SOLID principles often leads to redundant code, requiring recreation of similar components. For example, if Car and Product share common attributes, but are not structured as parent-child, creating two separate models with nearly identical attributes and behaviors becomes redundant.
 
 Credit : ChatGPT for correcting my grammatical errors.
