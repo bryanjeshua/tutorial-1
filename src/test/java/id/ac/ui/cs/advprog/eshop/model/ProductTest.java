@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ProductTest {
+    class ProductTest {
 
     Product product;
 
