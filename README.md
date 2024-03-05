@@ -75,3 +75,24 @@ Neglecting SOLID principles often leads to redundant code, requiring recreation 
 Credit : ChatGPT for correcting my grammatical errors.
 
  </details>
+
+ <details><summary>Fourth Week</summary>
+
+ ## Fourth Week
+> Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.I personally find the Test-Driven Development (TDD) approach quite helpful in certain situations, especially when I have a clear idea of what I'm aiming to create. It's great for projects where the goals and standards are well-defined from the start. In environments with strict regulations, like at more formal companies, following the TDD process can really help in ensuring we meet all necessary compliance.
+
+However, I've noticed that many projects evolve as they progress, and sometimes what we're building isn't really clear until we're well into the development process. In these cases, figuring out test cases can be challenging if we're still unsure about the project's final shape. Next time, I plan to allocate more time for thorough planning and case development, to make the testing phase more effective and efficient. 
+
+
+> You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+1. Speed: I feel pretty good about the speed of my code. It's pretty important, especially in Test-Driven Development. Efficient code is a big help, and I think mine is up to the task.
+
+2. Independence/Isolation: I admit that there are a few spots where my service could be a bit more isolated.  It's led to a bit more time spent on debugging test cases than I'd like. I'm looking forward to making my test cases more isolated.
+
+3. Reproducibility: I haven't had the chance to try my code out on different devices or systems yet, but from what I can tell, there shouldn't be any big hurdles in running it elsewhere. 
+
+4. Self-Validation: My code seems to tick this box well. Each test does a great job of clearly stating whether the code being tested is doing what it's supposed to, and mostly without any need for manual checking.
+
+5. Timeliness: I think I'm doing pretty well here, too. Though, since this is my first time through this TDD process, I've had a few moments where I needed to tweak my tests as I go. It's all part of the learning process, and I'm getting better.
+
+ </details>
