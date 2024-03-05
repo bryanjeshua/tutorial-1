@@ -93,6 +93,6 @@ However, I've noticed that many projects evolve as they progress, and sometimes 
 
 4. Self-Validation: My code seems to tick this box well. Each test does a great job of clearly stating whether the code being tested is doing what it's supposed to, and mostly without any need for manual checking.
 
-5. Timeliness: I think I'm doing pretty well here, too. Though, since this is my first time through this TDD process, I've had a few moments where I needed to tweak my tests as I go. It's all part of the learning process, and I'm getting better.
+5. Timeliness: I think I'm doing pretty well here, too. Though, since this is my first time through this TDD process, I've had a few moments where I needed to tweak my tests as I go. It's all part of the learning process, and I'm humbly getting better.
 
  </details>
