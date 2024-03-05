@@ -1,23 +1,19 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.expression.MapAccessor;
-
-import com.github.dockerjava.api.model.Repository;
-
-import enums.OrderStatus;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
-import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
-import id.ac.ui.cs.advprog.eshop.model.Product;
 
-public class PaymentRepositoryTest {
+class PaymentRepositoryTest {
+
     PaymentRepository paymentRepository;
+    
     List<Payment> payments;
 
+    @BeforeEach
     void setup(){
         paymentRepository = new PaymentRepository();
 
@@ -43,6 +39,7 @@ public class PaymentRepositoryTest {
         Payment payment = payments.get(1);
         Payment result = paymentRepository.save(payment);
         Payment findResult = paymentRepository.findById(payments.get(1).getId());
+
 
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
