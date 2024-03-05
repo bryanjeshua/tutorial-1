@@ -10,13 +10,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.repository.OrderRepository;
 import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
-import net.bytebuddy.asm.Advice.OffsetMapping.Factory.Illegal;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -30,6 +30,9 @@ class PaymentServiceImplTest {
 
     @Mock
     PaymentRepository paymentRepository;
+
+    @Mock
+    OrderRepository orderRepository;
 
     List<Payment> payments;
     List<Product> products;
@@ -61,6 +64,10 @@ class PaymentServiceImplTest {
         Map<String, String> paymentData2 = new HashMap<>();
         paymentData2.put("voucherCode", "ESHOP1234ABC5678");
         Payment payment2 = new Payment("7f9e15bb-4b15-42f4-aebc-c3af385fb078", "voucherCode", paymentData2);
+        
+        payments.add(payment1);
+        payments.add(payment2);
+
     }
 
     @Test
@@ -104,23 +111,27 @@ class PaymentServiceImplTest {
         verify(paymentRepository, times(0)).save(any(Payment.class));
     }
     @Test
-    void testSetStatus(){
+    void testSetStatus() {
+
         Payment payment = payments.get(0);
-        Payment newPayment = new Payment(payment.getOrderId(), payment.getMethod(), payment.getPaymentData());
-        
+        Order relatedOrder = orders.stream().filter(o -> o.getId().equals(payment.getOrderId())).findFirst().orElse(null);
+
         doReturn(payment).when(paymentRepository).findById(payment.getOrderId());
-        doReturn(newPayment).when(paymentRepository).save(any(Payment.class));
+        doReturn(new Payment(payment.getOrderId(), payment.getMethod(), payment.getPaymentData())).when(paymentRepository).save(any(Payment.class));
 
+        doReturn(relatedOrder).when(orderRepository).findById(payment.getOrderId());
+        
         Payment result = paymentService.setStatus(payment, "SUCCESS");
-
         assertEquals(payment.getOrderId(), result.getOrderId());
         assertEquals("SUCCESS", result.getStatus());
         verify(paymentRepository, times(1)).save(any(Payment.class));
     }
+
+
     @Test
     void testSetStatusInvalidStatus(){
         Payment payment = payments.get(0);
-        doReturn(payment).when(paymentRepository).findById(payment.getOrderId());
+//        doReturn(payment).when(paymentRepository).findById(payment.getOrderId());
 
         assertThrows(IllegalArgumentException.class, () -> {
             paymentService.setStatus(payment, "MEOW");
@@ -129,7 +140,7 @@ class PaymentServiceImplTest {
     }
     @Test
     void testSetStatusInvalidPaymentId(){
-        doReturn(null).when(paymentRepository).findById("zczc");
+//        doReturn(null).when(paymentRepository).findById("zczc");
         assertThrows(NoSuchElementException.class, () -> {
                     paymentService.setStatus(payments.get(0), "SUCCESS");
                 });

@@ -17,7 +17,7 @@ public class PaymentServiceImpl implements PaymentService{
     
     @Autowired
     private OrderRepository orderRepository;
-    
+    @Override
     public Payment addPayment(Order order, String method, Map<String, String> paymentData){
         if(paymentRepository.findById(order.getId()) == null){
             Payment payment = new Payment(order.getId(), method, paymentData);
@@ -26,7 +26,11 @@ public class PaymentServiceImpl implements PaymentService{
         }
         return null;
     };
+    @Override
     public Payment setStatus(Payment payment, String status){
+        if(!status.equals("SUCCESS") && !status.equals("REJECTED")){
+            throw new IllegalArgumentException("Invalid payment status");
+        }
         Payment paymentX = paymentRepository.findById(payment.getOrderId());
         if (paymentX != null) {
             Payment newPayment = new Payment(payment.getOrderId(), payment.getMethod(), payment.getPaymentData());
@@ -46,9 +50,11 @@ public class PaymentServiceImpl implements PaymentService{
             throw new NoSuchElementException();
         }
     };
+    @Override
     public Payment getPayment(String paymentId){
         return paymentRepository.findById(paymentId);
     }
+    @Override
     public List<Payment> getAllPayments(){
         return paymentRepository.findAll();
     }
