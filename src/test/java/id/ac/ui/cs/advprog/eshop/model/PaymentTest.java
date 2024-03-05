@@ -42,11 +42,11 @@ public class PaymentTest {
         paymentData.put("address", "jalan basri");
         paymentData.put("deliveryFee", "10000");
 
-        this.payment.setId(id);
+        this.payment.setOrderId(id);
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
-        assertEquals(id, this.payment.getId());
+        assertEquals(id, this.payment.getOrderId());
         assertEquals(method, this.payment.getMethod());
         assertEquals(paymentData, this.payment.getPaymentData());
         assertEquals("SUCCESS", this.payment.getStatus());
@@ -59,11 +59,11 @@ public class PaymentTest {
         this.paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
-        this.payment.setId(id);
+        this.payment.setOrderId(id);
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
-        assertEquals(id, this.payment.getId());
+        assertEquals(id, this.payment.getOrderId());
         assertEquals(method, this.payment.getMethod());
         assertEquals("SUCCESS", this.payment.getStatus());
         assertEquals(paymentData, this.payment.getPaymentData());
@@ -89,8 +89,8 @@ public class PaymentTest {
 
         assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
-        this.payment.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        payment2.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        this.payment.setOrderId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        payment2.setOrderId("eb558e9f-1c39-460e-8860-71af6af63bd6");
 
         assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
@@ -111,8 +111,8 @@ public class PaymentTest {
 
         assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
-        this.payment.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        payment2.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        this.payment.setOrderId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        payment2.setOrderId("eb558e9f-1c39-460e-8860-71af6af63bd6");
 
         assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
@@ -185,7 +185,7 @@ public class PaymentTest {
         this.paymentData = new HashMap<>();
         paymentData.put("address", "");
 
-        this.payment.setId(id);
+        this.payment.setOrderId(id);
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
@@ -198,7 +198,7 @@ public class PaymentTest {
         this.paymentData = new HashMap<>();
         paymentData.put("address", null);
 
-        this.payment.setId(id);
+        this.payment.setOrderId(id);
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
@@ -211,7 +211,7 @@ public class PaymentTest {
         this.paymentData = new HashMap<>();
         paymentData.put("deliveryFee", "");
 
-        this.payment.setId(id);
+        this.payment.setOrderId(id);
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
@@ -224,7 +224,7 @@ public class PaymentTest {
         this.paymentData = new HashMap<>();
         paymentData.put("deliveryFee", null);
 
-        this.payment.setId(id);
+        this.payment.setOrderId(id);
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 

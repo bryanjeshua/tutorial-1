@@ -8,15 +8,16 @@ import java.util.*;
 @Getter
 @Setter
 public class Payment {
-    private String id;
+    private String orderId;
     private String method;
     private String status;
     private Map<String, String> paymentData;
     public Payment() {
         
     }
-    public Payment(String id, String method, Map<String, String> paymentData) {
-        this.id = id;
+    public Payment(String orderId, String method, Map<String, String> paymentData) {
+        // Asumsi 1 Order 1 Payment maka dipakai ID yang sama
+        this.orderId = orderId;
         if ("COD".equals(method) || "voucherCode".equals(method)) {
             this.method = method;
         } else {

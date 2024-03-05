@@ -1,0 +1,55 @@
+package id.ac.ui.cs.advprog.eshop.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import id.ac.ui.cs.advprog.eshop.model.Order;
+import id.ac.ui.cs.advprog.eshop.model.Payment;
+import id.ac.ui.cs.advprog.eshop.repository.OrderRepository;
+import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
+import java.util.Map;
+import java.util.List;
+import java.util.NoSuchElementException;
+@Service
+public class PaymentServiceImpl implements PaymentService{
+    @Autowired
+    private PaymentRepository paymentRepository;
+    
+    @Autowired
+    private OrderRepository orderRepository;
+    
+    public Payment addPayment(Order order, String method, Map<String, String> paymentData){
+        if(paymentRepository.findById(order.getId()) == null){
+            Payment payment = new Payment(order.getId(), method, paymentData);
+            paymentRepository.save(payment);
+            return payment;
+        }
+        return null;
+    };
+    public Payment setStatus(Payment payment, String status){
+        Payment paymentX = paymentRepository.findById(payment.getOrderId());
+        if (paymentX != null) {
+            Payment newPayment = new Payment(payment.getOrderId(), payment.getMethod(), payment.getPaymentData());
+            newPayment.setStatus(status);
+            if(newPayment.getStatus().equals("SUCCESS")){
+                orderRepository.findById(payment.getOrderId()).setStatus("SUCCESS");
+            }
+            else if(newPayment.getStatus().equals("REJECTED")){
+                orderRepository.findById(payment.getOrderId()).setStatus("FAILED");
+            }
+            else{
+                throw new IllegalArgumentException("Invalid payment status");
+            }
+            paymentRepository.save(newPayment);
+            return newPayment;
+        } else {
+            throw new NoSuchElementException();
+        }
+    };
+    public Payment getPayment(String paymentId){
+        return paymentRepository.findById(paymentId);
+    }
+    public List<Payment> getAllPayments(){
+        return paymentRepository.findAll();
+    }
+}
