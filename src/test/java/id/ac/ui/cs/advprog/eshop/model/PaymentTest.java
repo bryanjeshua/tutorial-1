@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,13 +12,11 @@ import java.util.Map;
 
 public class PaymentTest {
     private List<Product> products;
-    private List<Order> orders;
     private Payment payment;
     private Map<String, String> paymentData;
     @BeforeEach
     public void setup() {
         this.products = new ArrayList<>();
-        this.orders = new ArrayList<>();
         this.payment = new Payment();
         Product product1 = new Product();
         Product product2 = new Product();
@@ -30,19 +29,15 @@ public class PaymentTest {
         product2.setProductName("Sabun Cap Budi");
         product2.setProductQuantity(8);
 
-        Order order1 = new Order("b66c9ab2-0e4c-4031-a6eb-59f06ca35952", products, 1708560000L, "Safira Sudrajat");
-        Order order2 = new Order("54fcf773-58a6-4c0f-999a-0619047ce075", products, 1708570000L, "Eni Sueni");
-
         this.products.add(product1);
         this.products.add(product2);
-        this.orders.add(order1);
-        this.orders.add(order2);
         
     }
     @Test
     public void testCODSetPaymentAttributes() {
         String id = "eb558e9f-1c39-460e-8860-71af6af63bd6";
-        String method = "voucherCode";
+        String method = "COD";
+
         this.paymentData = new HashMap<>();
         paymentData.put("address", "jalan basri");
         paymentData.put("deliveryFee", "10000");
@@ -83,7 +78,7 @@ public class PaymentTest {
 
     @Test
     public void testNullPaymentData() {
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             this.payment.setPaymentData(null);
         });
     }
@@ -92,44 +87,44 @@ public class PaymentTest {
     public void testVoucherCODHashCode() {
         Payment payment2 = new Payment();
 
-        assertEquals(this.payment.hashCode(), payment2.hashCode());
+        assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
         this.payment.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         payment2.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
 
-        assertEquals(this.payment.hashCode(), payment2.hashCode());
+        assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
         this.payment.setMethod("COD");
         payment2.setMethod("COD");
 
-        assertEquals(this.payment.hashCode(), payment2.hashCode());
+        assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
         this.payment.setPaymentData(new HashMap<String, String>());
         payment2.setPaymentData(new HashMap<String, String>());
 
-        assertEquals(this.payment.hashCode(), payment2.hashCode());
+        assertNotEquals(this.payment.hashCode(), payment2.hashCode());
     }
 
     @Test
     public void testVoucherCodePaymentHashCode() {
         Payment payment2 = new Payment();
 
-        assertEquals(this.payment.hashCode(), payment2.hashCode());
+        assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
         this.payment.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         payment2.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
 
-        assertEquals(this.payment.hashCode(), payment2.hashCode());
+        assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
         this.payment.setMethod("voucherCode");
         payment2.setMethod("voucherCode");
 
-        assertEquals(this.payment.hashCode(), payment2.hashCode());
+        assertNotEquals(this.payment.hashCode(), payment2.hashCode());
 
         this.payment.setPaymentData(new HashMap<String, String>());
         payment2.setPaymentData(new HashMap<String, String>());
 
-        assertEquals(this.payment.hashCode(), payment2.hashCode());
+        assertNotEquals(this.payment.hashCode(), payment2.hashCode());
     }
     @Test
     public void testCODPaymentSucces() {

@@ -17,18 +17,43 @@ public class Payment {
     }
     public Payment(String id, String method, Map<String, String> paymentData) {
         this.id = id;
-        this.method = method;
-        this.paymentData = paymentData;
+        if ("COD".equals(method) || "voucherCode".equals(method)) {
+            this.method = method;
+        } else {
+            throw new IllegalArgumentException("Invalid payment method");
+        }
+        if(paymentData == null) {
+            throw new IllegalArgumentException("Payment data cannot be null");
+        }
+        else {
+            this.paymentData = paymentData;
+        }
     }
 
-
+    public void setPaymentData(Map<String, String> paymentData) {
+        if(paymentData == null) {
+            throw new IllegalArgumentException("Payment data cannot be null");
+        }
+        else {
+            this.paymentData = paymentData;
+        }
+    }
+    
+    public void setMethod(String method) {
+        if ("COD".equals(method) || "voucherCode".equals(method)) {
+            this.method = method;
+        } else {
+            throw new IllegalArgumentException("Invalid payment method");
+        }
+    }
     public void generateStatus() {
         if (method.equals("COD")) {
             boolean isValid = true;
-            if (!paymentData.containsKey("address") || paymentData.get("address").isEmpty()) {
+            
+            if (!paymentData.containsKey("address") || paymentData.get("address") == null || paymentData.get("address").isEmpty()) {
                 isValid = false;
             }
-            if (!paymentData.containsKey("deliveryFee") || paymentData.get("deliveryFee").isEmpty()) {
+            if (!paymentData.containsKey("deliveryFee") || paymentData.get("deliveryFee") == null || paymentData.get("deliveryFee").isEmpty()) {
                 isValid = false;
             }
             if (isValid) {
@@ -52,8 +77,7 @@ public class Payment {
         if (!voucherCode.startsWith("ESHOP")) {
             return false;
         }
-        String numericalPart = voucherCode.substring(5, 15);
-        if (!numericalPart.matches("\\d{8}")) {
+        if (!containsAtLeast8NumericalCharacters(voucherCode)) {
             return false;
         }
         return true;
@@ -64,5 +88,24 @@ public class Payment {
         return status;
     }
 
+    public boolean containsAtLeast8NumericalCharacters(String str) {
+        if (str.length() <= 5) {
+            return false; 
+        }
+        
+        String substring = str.substring(5); 
+        int count = 0; 
+        
 
+        for (int i = 0; i < substring.length(); i++) {
+            char c = substring.charAt(i);
+            if (Character.isDigit(c)) { // Check if the character is a digit
+                count++;
+                if (count >= 8) {
+                    return true; // Found at least 8 numerical characters
+                }
+            }
+        }
+        return false; // Less than 8 numerical characters found
+    }
 }
