@@ -87,9 +87,9 @@ However, I've noticed that many projects evolve as they progress, and sometimes 
 > You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
 1. Speed: I feel pretty good about the speed of my code. It's pretty important, especially in Test-Driven Development. Efficient code is a big help, and I think mine is up to the task.
 
-2. Independence/Isolation: I admit that there are a few spots where my service could be a bit more isolated.  It's led to a bit more time spent on debugging test cases than I'd like. I'm looking forward to making my test cases more isolated.
+2. Independence/Isolation: I admit that there are a few spots where my service could be a bit more isolated.  It's led to a bit more time spent on debugging test cases than I'd like. I'm looking forward to making my test cases more isolated by making sure that I already have clear and detail plans what function and case that I have to serve.
 
-3. Reproducibility: I haven't had the chance to try my code out on different devices or systems yet, but from what I can tell, there shouldn't be any big hurdles in running it elsewhere. 
+3. Reproducibility: I haven't had the chance to try my code out on different devices or systems yet, but from what I can tell, there shouldn't be any big hurdles in running it elsewhere. Next time, I'll try on another machine as well.
 
 4. Self-Validation: My code seems to tick this box well. Each test does a great job of clearly stating whether the code being tested is doing what it's supposed to, and mostly without any need for manual checking.
 
