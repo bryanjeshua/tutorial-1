@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +52,7 @@ public class PaymentTest {
         assertEquals(id, this.payment.getOrderId());
         assertEquals(method, this.payment.getMethod());
         assertEquals(paymentData, this.payment.getPaymentData());
-        assertEquals("SUCCESS", this.payment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), this.payment.getStatus());
     }
 
     @Test
@@ -65,7 +68,7 @@ public class PaymentTest {
 
         assertEquals(id, this.payment.getOrderId());
         assertEquals(method, this.payment.getMethod());
-        assertEquals("SUCCESS", this.payment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), this.payment.getStatus());
         assertEquals(paymentData, this.payment.getPaymentData());
     }
 
@@ -134,7 +137,7 @@ public class PaymentTest {
         this.payment.getPaymentData().put("deliveryFee", "3000");
 
 
-        assertEquals("SUCCESS", this.payment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), this.payment.getStatus());
     }
     @Test
     public void testVoucherCodePaymentSucces() {
@@ -144,7 +147,7 @@ public class PaymentTest {
         this.payment.setPaymentData(new HashMap<>());
         this.payment.getPaymentData().put("voucherCode", validVoucherCode);
 
-        assertEquals("SUCCESS", this.payment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), this.payment.getStatus());
     }
 
     @Test
@@ -155,7 +158,7 @@ public class PaymentTest {
         this.payment.setPaymentData(new HashMap<>());
         this.payment.getPaymentData().put("voucherCode", invalidVoucherCode);
 
-        assertEquals("REJECTED", this.payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), this.payment.getStatus());
     }
     @Test
     public void testVoucherCodePaymentInvalidCodeLength() {
@@ -165,7 +168,7 @@ public class PaymentTest {
         this.payment.setPaymentData(new HashMap<>());
         this.payment.getPaymentData().put("voucherCode", invalidVoucherCode);
 
-        assertEquals("REJECTED", this.payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), this.payment.getStatus());
     }
     @Test
     public void testVoucherCodePaymentInvalid8Numerical() {
@@ -175,7 +178,7 @@ public class PaymentTest {
         this.payment.setPaymentData(new HashMap<>());
         this.payment.getPaymentData().put("voucherCode", invalidVoucherCode);
 
-        assertEquals("REJECTED", this.payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), this.payment.getStatus());
     }
 
     @Test
@@ -189,7 +192,7 @@ public class PaymentTest {
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
-        assertEquals("REJECTED", this.payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), this.payment.getStatus());
     }
     @Test
     public void testCODNullPaymentDataAddress() {
@@ -202,7 +205,7 @@ public class PaymentTest {
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
-        assertEquals("REJECTED", this.payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), this.payment.getStatus());
     }
     @Test
     public void testCODEmptyPaymentDataFee() {
@@ -215,7 +218,7 @@ public class PaymentTest {
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
-        assertEquals("REJECTED", this.payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), this.payment.getStatus());
     }
     @Test
     public void testCODNullPaymentDataFee() {
@@ -228,7 +231,7 @@ public class PaymentTest {
         this.payment.setMethod(method);
         this.payment.setPaymentData(paymentData);
 
-        assertEquals("REJECTED", this.payment.getStatus());
+        assertEquals(PaymentStatus.REJECTED.getValue(), this.payment.getStatus());
     }
 }
 

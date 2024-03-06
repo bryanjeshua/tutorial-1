@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -121,9 +122,9 @@ class PaymentServiceImplTest {
 
         doReturn(relatedOrder).when(orderRepository).findById(payment.getOrderId());
         
-        Payment result = paymentService.setStatus(payment, "SUCCESS");
+        Payment result = paymentService.setStatus(payment, PaymentStatus.SUCCESS.getValue());
         assertEquals(payment.getOrderId(), result.getOrderId());
-        assertEquals("SUCCESS", result.getStatus());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), result.getStatus());
         verify(paymentRepository, times(1)).save(any(Payment.class));
     }
 
@@ -142,7 +143,7 @@ class PaymentServiceImplTest {
     void testSetStatusInvalidPaymentId(){
 //        doReturn(null).when(paymentRepository).findById("zczc");
         assertThrows(NoSuchElementException.class, () -> {
-                    paymentService.setStatus(payments.get(0), "SUCCESS");
+                    paymentService.setStatus(payments.get(0), PaymentStatus.SUCCESS.getValue());
                 });
         verify(paymentRepository, times(0)).save(any(Payment.class));
     }

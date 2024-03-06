@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Builder;
 import java.util.*;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
+
 @Getter
 @Setter
 public class Payment {
@@ -58,16 +60,16 @@ public class Payment {
                 isValid = false;
             }
             if (isValid) {
-                status = "SUCCESS";
+                status = PaymentStatus.SUCCESS.getValue();
             } else {
-                status = "REJECTED";
+                status = PaymentStatus.REJECTED.getValue();
             }
         } else if (method.equals("voucherCode")) {
             String voucherCode = paymentData.get("voucherCode");
             if (isValidVoucherCode(voucherCode)) {
-                status = "SUCCESS";
+                status = PaymentStatus.SUCCESS.getValue();
             } else {
-                status = "REJECTED";
+                status = PaymentStatus.REJECTED.getValue();
             }
         }
     }
